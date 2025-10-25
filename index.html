@@ -1,0 +1,1938 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Builder - Create Your Professional CV</title>
+
+    <!-- === SEO Meta Tags (NEW) === -->
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="CV Builder - Create Your Professional CV in Minutes">
+    <meta name="description" content="Build a professional, modern CV in minutes. Choose from multiple templates, fill in your details, and download a job-ready PDF or image. Free and easy to use.">
+    <meta name="keywords" content="cv builder, resume maker, free cv builder, online cv, professional cv, cv template, create cv">
+    <meta name="author" content="Kang">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://your-cv-builder-website.com"> <!-- TODO: Change this to your live URL -->
+
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-cv-builder-website.com"> <!-- TODO: Change this -->
+    <meta property="og:title" content="CV Builder - Create Your Professional CV in Minutes">
+    <meta property="og:description" content="Build a professional, modern CV in minutes. Choose from multiple templates, fill in your details, and download a job-ready PDF or image. Free and easy to use.">
+    <meta property="og:image" content="https://placehold.co/1200x630/6366f1/white?text=Free+CV+Builder&font=inter"> <!-- TODO: Change this to a real preview image -->
+    <meta property="og:site_name" content="CV Builder">
+
+    <!-- Twitter Card -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://your-cv-builder-website.com"> <!-- TODO: Change this -->
+    <meta property="twitter:title" content="CV Builder - Create Your Professional CV in Minutes">
+    <meta property="twitter:description" content="Build a professional, modern CV in minutes. Choose from multiple templates, fill in your details, and download a job-ready PDF or image. Free and easy to use.">
+    <meta property="twitter:image" content="https://placehold.co/1200x630/6366f1/white?text=Free+CV+Builder&font=inter"> <!-- TODO: Change this -->
+    <!-- <meta property="twitter:site" content="@YourTwitterHandle"> --> <!-- Optional: Uncomment and add your Twitter handle -->
+
+    <!-- === Structured Data (JSON-LD) for Google (NEW) === -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "CV Builder",
+      "applicationCategory": "ProductivityApplication",
+      "operatingSystem": "Web",
+      "description": "Build a professional, modern CV in minutes. Choose from multiple templates, fill in your details, and download a job-ready PDF or image.",
+      "author": {
+        "@type": "Person",
+        "name": "Kang"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "250"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0.00",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+    
+    <!-- Tailwind CSS CDN --><script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts - Inter --><link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"> <!-- Added 800 weight -->
+    <link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon (using an emoji for simplicity) --><link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>">
+    
+    <style>
+      /* Apply the Inter font family */
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+      /* Custom styles for the form input */
+      .form-input {
+        @apply w-full px-4 py-2 bg-white border border-gray-300 rounded-md text-dark-text placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition-colors;
+      }
+      .form-label {
+        @apply block mb-2 text-sm font-medium text-medium-text;
+      }
+      .form-textarea {
+        @apply w-full px-4 py-2 bg-white border border-gray-300 rounded-md text-dark-text placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition-colors;
+      }
+      .remove-btn {
+        @apply text-sm text-red-500 hover:text-red-700 transition-colors;
+      }
+      .add-btn {
+         @apply w-full inline-flex items-center justify-center px-4 py-2 border border-brand-primary text-base font-medium rounded-md shadow-sm text-brand-primary bg-white hover:bg-gray-50 transition-colors duration-300;
+      }
+      
+      /* Accordion Styles */
+      .accordion-content {
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.3s ease-out;
+      }
+      .accordion-content.open {
+          max-height: 1000px; /* Set to a large enough value */
+          transition: max-height 0.5s ease-in;
+      }
+      .accordion-arrow {
+          transition: transform 0.3s ease;
+      }
+      .accordion-arrow.open {
+          transform: rotate(180deg);
+      }
+
+      /* Modern Profile Template specific styles */
+      .modern-preview-sidebar {
+          background: linear-gradient(135deg, #6366f1, #4f46e5); /* Brand primary/secondary gradient */
+          color: white;
+          padding: 2.5rem 1.5rem;
+          text-align: center;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 1rem;
+      }
+      .modern-profile-image {
+          width: 120px;
+          height: 120px;
+          border-radius: 50%;
+          object-fit: cover;
+          border: 4px solid rgba(255,255,255,0.3);
+      }
+      .modern-section-title {
+          font-weight: 700;
+          font-size: 1.25rem; /* text-xl */
+          color: #374151; /* dark-text */
+          margin-bottom: 0.75rem;
+      }
+
+      /* Minimalist Template specific styles */
+      .minimalist-preview-header {
+          text-align: center;
+          padding: 2.5rem;
+          border-bottom: 2px solid #e5e7eb; /* light-border */
+      }
+      .minimalist-section-title {
+          font-weight: 700;
+          font-size: 1.125rem; /* text-lg */
+          color: #6366f1; /* brand-primary */
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          border-bottom: 2px solid #6366f1;
+          padding-bottom: 0.25rem;
+          display: inline-block;
+          margin-bottom: 1rem;
+      }
+
+      /* Fonts for mockups */
+      .font-serif {
+        font-family: 'Tinos', serif;
+      }
+      .font-mono {
+        font-family: 'Source Code Pro', monospace;
+      }
+    </style>
+    
+    <script>
+      // Custom Tailwind configuration
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'brand-primary': '#6366f1', // Indigo 500
+              'brand-secondary': '#4f46e5', // Indigo 600
+              'light-bg': '#f9fafb', // Gray 50
+              'light-card': '#ffffff', // White
+              'light-border': '#e5e7eb', // Gray 200
+              'dark-text': '#1f2937', // Gray 800
+              'medium-text': '#6b7280', // Gray 500
+            },
+            fontFamily: {
+              serif: ['Tinos', 'serif'],
+              mono: ['Source Code Pro', 'monospace'],
+            }
+          }
+        }
+      }
+    </script>
+</head>
+<body class="bg-light-bg text-dark-text antialiased">
+
+    <!-- Header & Navigation --><header class="bg-light-card/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm border-b border-light-border">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo/Title --><a href="#" class="flex-shrink-0 flex items-center nav-link" data-page="home">
+                    <span class="text-2xl font-bold text-brand-primary">
+                        {CV Builder}
+                    </span>
+                </a>
+                
+                <!-- Navigation Links --><div class="hidden sm:block sm:ml-6">
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-medium-text hover:text-dark-text px-3 py-2 rounded-md text-sm font-medium transition-colors nav-link" data-page="home">Home</a>
+                        <a href="#" class="text-medium-text hover:text-dark-text px-3 py-2 rounded-md text-sm font-medium transition-colors nav-link" data-page="features">Features</a>
+                        <a href="#" class="text-medium-text hover:text-dark-text px-3 py-2 rounded-md text-sm font-medium transition-colors nav-link" data-page="about">About Us</a>
+                        <a href="#" class="text-medium-text hover:text-dark-text px-3 py-2 rounded-md text-sm font-medium transition-colors nav-link" data-page="builder">Create CV</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content: Page Container --><main>
+
+        <!-- Page: Home --><section id="page-home" class="page-content">
+            <!-- Hero Section --><section class="relative bg-white pt-24 pb-32 overflow-hidden">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center">
+                        <!-- Left Column: Text Content -->
+                        <div class="relative z-10">
+                            <h1 class="text-4xl font-extrabold tracking-tight text-dark-text sm:text-5xl md:text-6xl">
+                                <span class="block xl:inline">Create Your Professional CV</span>
+                                <span class="block text-brand-primary xl:inline">in Minutes</span>
+                            </h1>
+                            <p class="mt-6 text-lg text-medium-text sm:text-xl md:mt-8">
+                                Our tool helps you build a stunning, professional-grade curriculum vitae. Stand out to employers with our easy-to-use builder and modern templates.
+                            </p>
+                            <div class="mt-10 flex space-x-4">
+                                <a href="#" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md shadow-lg text-white bg-brand-primary hover:bg-brand-secondary transition-colors duration-300 nav-link" data-page="builder">
+                                    Start Building Now
+                                </a>
+                                <a href="#" class="inline-flex items-center justify-center px-8 py-3 border border-gray-300 text-base font-medium rounded-md shadow-sm text-dark-text bg-white hover:bg-gray-50 transition-colors duration-300 nav-link" data-page="features">
+                                    Learn More
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Right Column: App Preview -->
+                        <div class="mt-12 lg:mt-0 relative">
+                            <div class="bg-light-card rounded-xl shadow-2xl border border-light-border p-2">
+                                <div class="flex items-center space-x-1.5 px-3 py-2 border-b border-light-border">
+                                    <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                                    <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                                    <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                                </div>
+                                <div class="bg-light-bg p-6 h-96 overflow-hidden">
+                                    <!-- Mock App UI -->
+                                    <div class="flex space-x-4">
+                                        <div class="w-1/3 space-y-3">
+                                            <div class="w-full h-10 bg-white rounded shadow-sm p-2"><div class="w-3/4 h-2 bg-gray-200 rounded"></div></div>
+                                            <div class="w-full h-24 bg-white rounded shadow-sm p-2"><div class="w-1/2 h-2 bg-gray-200 rounded mb-2"></div><div class="w-3/4 h-2 bg-gray-200 rounded"></div></div>
+                                            <div class="w-full h-16 bg-white rounded shadow-sm p-2"><div class="w-1/2 h-2 bg-gray-200 rounded mb-2"></div><div class="w-3/4 h-2 bg-gray-200 rounded"></div></div>
+                                        </div>
+                                        <div class="w-2/3 bg-white h-80 rounded shadow-lg p-6">
+                                            <div class="w-1/2 h-5 bg-gray-800 rounded mx-auto"></div>
+                                            <div class="w-full h-2 bg-gray-300 rounded mx-auto mt-2"></div>
+                                            <div class="w-1/3 h-3 bg-brand-primary rounded mt-6"></div>
+                                            <div class="w-full h-2 bg-gray-200 rounded mt-2"></div>
+                                            <div class="w-3/4 h-2 bg-gray-200 rounded mt-2"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: How It Works --><section id="how-it-works" class="py-20 bg-light-bg">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="lg:text-center">
+                        <h2 class="text-base text-brand-primary font-semibold tracking-wide uppercase">Easy Steps</h2>
+                        <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-dark-text sm:text-4xl">
+                            How It Works
+                        </p>
+                    </div>
+
+                    <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <!-- Step 1 Card --><div class="bg-light-card rounded-lg shadow-lg border border-light-border overflow-hidden transform transition-all duration-300 hover:scale-[1.03] hover:shadow-xl">
+                            <div class="p-6">
+                                <div class="flex items-center space-x-4">
+                                    <svg class="w-12 h-12 text-brand-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm4 0v12h4V6H8zm6 0v12h4V6h-4z"></path></svg>
+                                    <h3 class="text-xl font-bold text-dark-text">1. Choose a Template</h3>
+                                </div>
+                                <p class="mt-4 text-medium-text">
+                                    Select from our library of professionally designed, field-tested CV templates built to impress any recruiter.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Step 2 Card --><div class="bg-light-card rounded-lg shadow-lg border border-light-border overflow-hidden transform transition-all duration-300 hover:scale-[1.03] hover:shadow-xl">
+                            <div class="p-6">
+                                <div class="flex items-center space-x-4">
+                                    <svg class="w-12 h-12 text-brand-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.536L16.732 3.732z"></path></svg>
+                                    <h3 class="text-xl font-bold text-dark-text">2. Fill in Your Details</h3>
+                                </div>
+                                <p class="mt-4 text-medium-text">
+                                    Our guided editor makes it simple to add your experience, skills, and education. No formatting required.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Step 3 Card --><div class="bg-light-card rounded-lg shadow-lg border border-light-border overflow-hidden transform transition-all duration-300 hover:scale-[1.03] hover:shadow-xl">
+                            <div class="p-6">
+                                <div class="flex items-center space-x-4">
+                                    <svg class="w-12 h-12 text-brand-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                                    <h3 class="text-xl font-bold text-dark-text">3. Download Your CV</h3>
+                                </div>
+                                <p class="mt-4 text-medium-text">
+                                    Export your completed CV as a high-quality PDF, ready to be sent directly to employers.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- NEW Founder Section --><section id="founder-section" class="py-24 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                        <!-- Left: Quote / The Idea -->
+                        <div class="relative">
+                            <svg class="absolute top-0 left-0 transform -translate-x-6 -translate-y-6 w-32 h-32 text-gray-100" fill="currentColor" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg"><path d="M101.83 119.53H74.22V88.85c0-12.8-5.3-21.36-15.91-25.68l-3.69-1.84c-3.14-1.57-4.71-4.1-4.71-7.59v-3.14c0-4.1 2.36-7.23 6.03-9.4l.62-.37c15.28-9.17 24.58-22.1 27.91-38.79H102v97.5H101.83zM25.83 119.53H.22V88.85c0-12.8-5.3-21.36-15.91-25.68l-3.69-1.84c-3.14-1.57-4.71-4.1-4.71-7.59v-3.14c0-4.1 2.36-7.23 6.03-9.4l.62-.37C1.84 31.67 11.14 18.74 14.47 2.05H30v97.5H25.83z" opacity="1" transform="translate(14, 0)"></path></svg>
+                            <blockquote class="relative text-2xl font-medium text-dark-text leading-relaxed">
+                                "The idea was simple: building a professional CV shouldn't be the hardest part of finding a job. We wanted to create a tool that was powerful, beautiful, and accessible to everyone, helping them put their best foot forward."
+                            </blockquote>
+                        </div>
+                        
+                        <!-- Right: Founder Info -->
+                        <div class="flex items-center space-x-6">
+                            <img class="w-24 h-24 rounded-full shadow-lg border-4 border-white" src="https://placehold.co/100x100/e0e7ff/6366f1?text=Kang" alt="Founder Kang">
+                            <div>
+                                <h3 class="text-2xl font-bold text-dark-text">Kang</h3>
+                                <p class="text-base text-brand-primary font-semibold">Founder & Developer</p>
+                                <p class="mt-2 text-medium-text">
+                                    As the developer and founder, Kang envisioned a CV builder that would remove barriers, helping people focus on their skills and experience, not on formatting and design struggles.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Page: Features --><section id="page-features" class="page-content hidden">
+            <!-- Section: Features --><section id="features" class="py-20 bg-light-bg">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="lg:text-center">
+                        <h2 class="text-base text-brand-primary font-semibold tracking-wide uppercase">Powerful</h2>
+                        <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-dark-text sm:text-4xl">
+                            Features to Help You Succeed
+                        </p>
+                    </div>
+
+                    <div class="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Feature Card --><div class="bg-light-card rounded-lg shadow-lg border border-light-border overflow-hidden transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+                            <div class="p-6">
+                                <svg class="w-12 h-12 text-brand-primary mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V6z"></path></svg>
+                                <h3 class="text-lg font-semibold text-dark-text">Modern Templates</h3>
+                                <p class="mt-2 text-sm text-medium-text">ATS-friendly and recruiter-approved designs that make your profile stand out.</p>
+                            </div>
+                        </div>
+                        <!-- Feature Card --><div class="bg-light-card rounded-lg shadow-lg border border-light-border overflow-hidden transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+                            <div class="p-6">
+                                <svg class="w-12 h-12 text-brand-primary mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                                <h3 class="text-lg font-semibold text-dark-text">Easy-to-Use Editor</h3>
+                                <p class="mt-2 text-sm text-medium-text">A simple, guided interface. What you see is what you get, no more guesswork.</p>
+                            </div>
+                        </div>
+                        <!-- Feature Card --><div class="bg-light-card rounded-lg shadow-lg border border-light-border overflow-hidden transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+                            <div class="p-6">
+                                <svg class="w-12 h-12 text-brand-primary mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                                <h3 class="text-lg font-semibold text-dark-text">Instant PDF Export</h3>
+                                <p class="mt-2 text-sm text-medium-text">Download a pixel-perfect PDF or Image of your CV with a single click.</p>
+                            </div>
+                        </div>
+                        <!-- Feature Card --><div class="bg-light-card rounded-lg shadow-lg border border-light-border overflow-hidden transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+                            <div class="p-6">
+                                <svg class="w-12 h-12 text-brand-primary mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m12.728 0l-.707.707M12 21v-1m-6.657-3.343l.707-.707m12.728 0l.707.707"></path></svg>
+                                <h3 class="text-lg font-semibold text-dark-text">Smart Suggestions</h3>
+                                <p class="mt-2 text-sm text-medium-text">Get smart tips and phrase suggestions to improve your CV's content (Coming Soon).</p>
+                            </div>
+                        </div>
+                        <!-- Feature Card --><div class="bg-light-card rounded-lg shadow-lg border border-light-border overflow-hidden transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+                            <div class="p-6">
+                                <svg class="w-12 h-12 text-brand-primary mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                                <h3 class="text-lg font-semibold text-dark-text">Responsive Preview</h3>
+                                <p class="mt-2 text-sm text-medium-text">Instantly see how your CV will look on desktop, tablet, and mobile devices.</p>
+                            </div>
+                        </div>
+                        <!-- Feature Card --><div class="bg-light-card rounded-lg shadow-lg border border-light-border overflow-hidden transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+                            <div class="p-6">
+                                <svg class="w-12 h-12 text-brand-primary mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                                <h3 class="text-lg font-semibold text-dark-text">Secure & Private</h3>
+                                <p class="mt-2 text-sm text-medium-text">Your data is yours. We respect your privacy and keep your information secure.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Page: Builder --><section id="page-builder" class="page-content hidden">
+            <!-- Section: CV Builder Tool --><section id="builder" class="py-20 bg-light-bg min-h-screen">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    
+                    <!-- Template Library --><div id="template-library">
+                        <div class="lg:text-center mb-12">
+                            <h2 class="text-base text-brand-primary font-semibold tracking-wide uppercase">Step 1</h2>
+                            <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-dark-text sm:text-4xl">
+                                Choose Your Template
+                            </p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            
+                            <!-- Template 1: Standard -->
+                            <div class="bg-light-card rounded-lg shadow-lg border border-light-border overflow-hidden group">
+                                <!-- New Rich Preview for Standard -->
+                                <div class="h-[400px] bg-white border-b border-light-border overflow-hidden p-8 shadow-inner-lg pointer-events-none">
+                                    <div class="text-center border-b pb-4 border-gray-200">
+                                        <h2 class="text-2xl font-bold text-gray-800">Jane Doe</h2>
+                                        <p class="text-xs text-gray-600 mt-1">jane.doe@example.com | (555) 123-4567</p>
+                                    </div>
+                                    <div class="mt-4">
+                                        <h3 class="text-lg font-bold text-brand-secondary border-b-2 border-brand-primary pb-1 inline-block">Summary</h3>
+                                        <p class="mt-2 text-xs text-gray-700">Dynamic and motivated professional with a proven record of...</p>
+                                    </div>
+                                    <div class="mt-4">
+                                        <h3 class="text-lg font-bold text-brand-secondary border-b-2 border-brand-primary pb-1 inline-block">Experience</h3>
+                                        <div class="mt-2 space-y-2">
+                                            <h4 class="text-sm font-semibold text-gray-800">Senior Web Developer</h4>
+                                            <p class="text-xs text-gray-600 italic">Tech Solutions Inc. | 2020 - Present</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-xl font-bold text-dark-text">Standard Template</h3>
+                                    <p class="text-sm text-medium-text mt-2">A classic, professional, single-column resume. Perfect for all industries.</p>
+                                    <button type="button" class="template-select-btn mt-6 w-full inline-flex items-center justify-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-brand-primary hover:bg-brand-secondary transition-colors duration-300" data-template="standard">
+                                        Use This Template
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Template 2: Modern Profile -->
+                            <div class="bg-light-card rounded-lg shadow-lg border border-light-border overflow-hidden group">
+                                <!-- New Rich Preview for Modern -->
+                                <div class="h-[400px] bg-white border-b border-light-border overflow-hidden grid grid-cols-3 shadow-inner-lg pointer-events-none">
+                                    <div class="col-span-1 p-4" style="background: linear-gradient(135deg, #6366f1, #4f46e5);">
+                                        <img src="https://placehold.co/80x80/ffffff/9ca3af?text=Pic" alt="Profile" class="w-16 h-16 rounded-full mx-auto border-2 border-white/50">
+                                        <h2 class="text-lg font-bold text-white text-center mt-2">Ryan Adlard</h2>
+                                        <p class="text-xs font-medium text-white/90 text-center">Web Designer</p>
+                                    </div>
+                                    <div class="col-span-2 p-6">
+                                        <h3 class="text-lg font-bold text-dark-text mb-2">About Me</h3>
+                                        <p class="text-xs text-gray-700">I am Ryan Adlard, web designer from USA, California. I have rich experience...</p>
+                                        <h3 class="text-lg font-bold text-dark-text mb-2 mt-4">My Services</h3>
+                                        <div class="bg-light-bg p-2 rounded-md"><h4 class="text-xs font-semibold text-gray-800">Web Development</h4></div>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-xl font-bold text-dark-text">Modern Profile Template</h3>
+                                    <p class="text-sm text-medium-text mt-2">A stylish, two-column resume with a profile picture and sidebar. Great for creatives.</p>
+                                    <button type="button" class="template-select-btn mt-6 w-full inline-flex items-center justify-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-brand-primary hover:bg-brand-secondary transition-colors duration-300" data-template="modern">
+                                        Use This Template
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Template 3: Creative Minimalist -->
+                            <div class="bg-light-card rounded-lg shadow-lg border border-light-border overflow-hidden group">
+                                <!-- New Rich Preview for Minimalist -->
+                                <div class="h-[400px] bg-white border-b border-light-border overflow-hidden shadow-inner-lg pointer-events-none">
+                                    <div class="text-center p-8 border-b-2 border-gray-200">
+                                        <h2 class="text-2xl font-bold text-gray-800">Alex Johnson</h2>
+                                        <p class="text-lg text-brand-primary mt-1">Product Designer</p>
+                                    </div>
+                                    <div class="p-8">
+                                        <p class="text-center text-xs text-gray-700">Passionate product designer with a focus on creating intuitive...</p>
+                                        <div class="grid grid-cols-3 gap-4 mt-6">
+                                            <div class="col-span-1"><h3 class="text-sm font-bold text-brand-primary uppercase tracking-wide">Skills</h3><ul class="text-xs text-gray-700 space-y-1 mt-2"><li> • Figma</li><li> • JavaScript</li></ul></div>
+                                            <div class="col-span-2"><h3 class="text-sm font-bold text-brand-primary uppercase tracking-wide">Experience</h3><h4 class="text-xs font-semibold text-gray-800 mt-2">Product Designer</h4><p class="text-xs text-gray-600 italic">Pixa Co.</p></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-xl font-bold text-dark-text">Creative Minimalist</h3>
+                                    <p class="text-sm text-medium-text mt-2">A clean, typography-focused layout with a dedicated skills section. Sleek and modern.</p>
+                                    <button type="button" class="template-select-btn mt-6 w-full inline-flex items-center justify-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-brand-primary hover:bg-brand-secondary transition-colors duration-300" data-template="minimalist">
+                                        Use This Template
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- "Coming Soon" Section -->
+                        <div class="lg:text-center my-16 pt-12 border-t border-light-border">
+                            <h2 class="text-base text-brand-primary font-semibold tracking-wide uppercase">More Styles</h2>
+                            <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-dark-text sm:text-4xl">
+                                From Our Community
+                            </p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            
+                            <!-- Coming Soon Template 1: Tech -->
+                            <div class="bg-light-card rounded-lg shadow-lg border border-light-border overflow-hidden group relative opacity-60">
+                                <div class="absolute top-4 right-4 bg-yellow-400 text-yellow-900 text-xs font-bold px-3 py-1 rounded-full z-10">Coming Soon</div>
+                                <!-- Mockup for Tech -->
+                                <div class="h-[400px] bg-gray-900 text-white border-b border-gray-700 overflow-hidden p-8 shadow-inner-lg pointer-events-none font-mono">
+                                    <h2 class="text-2xl font-bold text-white">Sarah Chen</h2>
+                                    <p class="text-lg text-green-400 mt-1">Software Engineer</p>
+                                    <div class="mt-6">
+                                        <h3 class="text-lg font-bold text-green-400">~/SKILLS</h3>
+                                        <p class="mt-2 text-xs text-gray-300">> Python, React, AWS, Docker</p>
+                                    </div>
+                                    <div class="mt-4">
+                                        <h3 class="text-lg font-bold text-green-400">~/PROJECTS/LATEST</h3>
+                                        <p class="mt-2 text-xs text-gray-300">> Deployed a scalable microservice...</p>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-xl font-bold text-dark-text">Tech / Developer</h3>
+                                    <p class="text-sm text-medium-text mt-2">A monospaced, dark-mode template perfect for software developers and engineers.</p>
+                                    <button type="button" class="mt-6 w-full inline-flex items-center justify-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-gray-400 cursor-not-allowed" disabled>
+                                        Coming Soon
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Coming Soon Template 2: Academic -->
+                            <div class="bg-light-card rounded-lg shadow-lg border border-light-border overflow-hidden group relative opacity-60">
+                                <div class="absolute top-4 right-4 bg-yellow-400 text-yellow-900 text-xs font-bold px-3 py-1 rounded-full z-10">Coming Soon</div>
+                                <!-- Mockup for Academic -->
+                                <div class="h-[400px] bg-white border-b border-light-border overflow-hidden p-8 shadow-inner-lg pointer-events-none font-serif">
+                                    <h2 class="text-2xl font-bold text-gray-900 text-center">Dr. Eleanor Vance</h2>
+                                    <p class="text-sm text-gray-700 text-center">Ph.D. in Literature</p>
+                                    <div class="mt-6">
+                                        <h3 class="text-lg font-semibold text-gray-800 border-b-2 border-gray-300 pb-1">Publications</h3>
+                                        <p class="mt-2 text-xs text-gray-700">"The Haunting of Hill House: An Architectural Analysis..."</p>
+                                    </div>
+                                    <div class="mt-4">
+                                        <h3 class="text-lg font-semibold text-gray-800 border-b-2 border-gray-300 pb-1">Education</h3>
+                                        <p class="mt-2 text-xs text-gray-700">Ph.D., Harvard University (2020)</p>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-xl font-bold text-dark-text">Academic / Serif</h3>
+                                    <p class="text-sm text-medium-text mt-2">A classic serif template for academia, researchers, and formal applications.</p>
+                                    <button type="button" class="mt-6 w-full inline-flex items-center justify-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-gray-400 cursor-not-allowed" disabled>
+                                        Coming Soon
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Coming Soon Template 3: Bold -->
+                            <div class="bg-light-card rounded-lg shadow-lg border border-light-border overflow-hidden group relative opacity-60">
+                                <div class="absolute top-4 right-4 bg-yellow-400 text-yellow-900 text-xs font-bold px-3 py-1 rounded-full z-10">Coming Soon</div>
+                                <!-- Mockup for Bold -->
+                                <div class="h-[400px] bg-brand-primary text-white border-b border-light-border overflow-hidden p-8 shadow-inner-lg pointer-events-none">
+                                    <h2 class="text-5xl font-extrabold text-white tracking-tighter">MARCUS<br>REID</h2>
+                                    <p class="text-xl text-white/80 mt-2">MARKETING DIRECTOR</p>
+                                    <div class="mt-8 border-t-4 border-white pt-4">
+                                        <h3 class="text-lg font-bold text-white uppercase">Profile</h3>
+                                        <p class="mt-2 text-xs text-white/90">A results-driven marketing director with over 10 years of experience...</p>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-xl font-bold text-dark-text">Bold & Modern</h3>
+                                    <p class="text-sm text-medium-text mt-2">A high-impact, typography-first template for marketing, sales, and leadership roles.</p>
+                                    <button type="button" class="mt-6 w-full inline-flex items-center justify-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-gray-400 cursor-not-allowed" disabled>
+                                        Coming Soon
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div> <!-- End Template Library -->
+
+                    <!-- Builder Area (Hidden by default) --><div id="builder-area" class="hidden">
+                        <div class="flex justify-between items-center mb-10">
+                            <h2 class="text-3xl leading-8 font-extrabold tracking-tight text-dark-text sm:text-4xl">
+                                Live CV Editor
+                            </h2>
+                            <button type="button" id="change-template-btn" class="inline-flex items-center justify-center px-4 py-2 border border-gray-300 text-base font-medium rounded-md shadow-sm text-dark-text bg-white hover:bg-gray-50 transition-colors duration-300">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm4 0v12h4V6H8zm6 0v12h4V6h-4z"></path></svg>
+                                Change Template
+                            </button>
+                        </div>
+
+                        <!-- Standard Template UI --><div id="standard-template-ui" class="template-ui hidden">
+                            <div class="lg:grid lg:grid-cols-5 lg:gap-8 items-start">
+                                <!-- Column 1: Form Inputs (Accordion) --><div class="lg:col-span-2 space-y-4">
+                                    
+                                    <!-- Accordion Item: Personal Details --><div class="bg-light-card rounded-lg shadow-lg border border-light-border overflow-hidden">
+                                        <button type="button" class="accordion-header w-full flex justify-between items-center p-6 text-left" data-target="accordion-standard-personal">
+                                            <span class="text-2xl font-bold text-dark-text">Personal Details</span>
+                                            <svg class="accordion-arrow w-6 h-6 text-medium-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                        </button>
+                                        <div id="accordion-standard-personal" class="accordion-content p-6 pt-0 space-y-4">
+                                            <div>
+                                                <label for="standard-full-name" class="form-label">Full Name</label>
+                                                <input type="text" id="standard-full-name" class="form-input" placeholder="e.g., Jane Doe">
+                                            </div>
+                                            <div>
+                                                <label for="standard-email" class="form-label">Email Address</label>
+                                                <input type="email" id="standard-email" class="form-input" placeholder="e.g., jane.doe@example.com">
+                                            </div>
+                                            <div>
+                                                <label for="standard-phone" class="form-label">Phone</label>
+                                                <input type="text" id="standard-phone" class="form-input" placeholder="e.g., (555) 123-4567">
+                                            </div>
+                                            <div>
+                                                <label for="standard-address" class="form-label">Address</label>
+                                                <input type="text" id="standard-address" class="form-input" placeholder="e.g., San Francisco, CA">
+                                            </div>
+                                            <div>
+                                                <label for="standard-summary" class="form-label">Professional Summary</label>
+                                                <textarea id="standard-summary" rows="5" class="form-textarea" placeholder="Dynamic and motivated professional..."></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Accordion Item: Work Experience --><div class="bg-light-card rounded-lg shadow-lg border border-light-border overflow-hidden">
+                                        <button type="button" class="accordion-header w-full flex justify-between items-center p-6 text-left" data-target="accordion-standard-experience">
+                                            <span class="text-2xl font-bold text-dark-text">Work Experience</span>
+                                            <svg class="accordion-arrow w-6 h-6 text-medium-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                        </button>
+                                        <div id="accordion-standard-experience" class="accordion-content p-6 pt-0 space-y-4">
+                                            <div id="standard-experience-list" class="space-y-6">
+                                                <!-- Dynamic experience entries will be added here --></div>
+                                            <button type="button" id="add-standard-experience-btn" class="add-btn">
+                                                + Add Work Experience
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Accordion Item: Education --><div class="bg-light-card rounded-lg shadow-lg border border-light-border overflow-hidden">
+                                        <button type="button" class="accordion-header w-full flex justify-between items-center p-6 text-left" data-target="accordion-standard-education">
+                                            <span class="text-2xl font-bold text-dark-text">Education</span>
+                                            <svg class="accordion-arrow w-6 h-6 text-medium-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                        </button>
+                                        <div id="accordion-standard-education" class="accordion-content p-6 pt-0 space-y-4">
+                                            <div id="standard-education-list" class="space-y-6">
+                                                <!-- Dynamic education entries will be added here --></div>
+                                            <button type="button" id="add-standard-education-btn" class="add-btn">
+                                                + Add Education
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Download Button Section --><div class="bg-light-card rounded-lg shadow-lg border border-light-border overflow-hidden p-6 space-y-4">
+                                        <h3 class="text-2xl font-bold text-dark-text">Download Your CV</h3>
+                                        <p class="text-medium-text text-sm">Save your completed CV in your preferred format.</p>
+                                        <button type="button" class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-lg text-white bg-brand-primary hover:bg-brand-secondary transition-colors duration-300">
+                                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                                            Download as PDF (Mock)
+                                        </button>
+                                        <button type="button" class="w-full inline-flex items-center justify-center px-6 py-3 border border-gray-300 text-base font-medium rounded-md shadow-sm text-dark-text bg-white hover:bg-gray-50 transition-colors duration-300">
+                                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l-1.586-1.586a2 2 0 00-2.828 0L6 14m6-6l.01.01"></path></svg>
+                                            Download as Image (Mock)
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Column 2: CV Preview --><div class="lg:col-span-3 mt-8 lg:mt-0">
+                                    <div id="standard-preview" class="bg-white rounded-lg shadow-2xl p-8 lg:p-12 text-gray-900 border border-light-border">
+                                        <!-- Mock CV Content --><div class="text-center border-b pb-4 border-gray-200">
+                                            <h2 id="preview-standard-name" class="text-4xl font-bold text-gray-800">Jane Doe</h2>
+                                            <p id="preview-standard-contact" class="text-md text-gray-600 mt-2">
+                                                jane.doe@example.com | (555) 123-4567 | San Francisco, CA
+                                            </p>
+                                        </div>
+                                        
+                                        <div class="mt-6">
+                                            <h3 class="text-xl font-bold text-brand-secondary border-b-2 border-brand-primary pb-1 inline-block">Professional Summary</h3>
+                                            <p id="preview-standard-summary" class="mt-2 text-gray-700">
+                                                Dynamic and motivated professional with a proven record of...
+                                            </p>
+                                        </div>
+                                        
+                                        <div class="mt-6">
+                                            <h3 class="text-xl font-bold text-brand-secondary border-b-2 border-brand-primary pb-1 inline-block">Experience</h3>
+                                            <div id="preview-standard-experience-list" class="mt-2 space-y-4">
+                                                <!-- Dynamic preview of experience will go here --></div>
+                                        </div>
+
+                                        <div class="mt-6">
+                                            <h3 class="text-xl font-bold text-brand-secondary border-b-2 border-brand-primary pb-1 inline-block">Education</h3>
+                                            <div id="preview-standard-education-list" class="mt-2 space-y-4">
+                                                <!-- Dynamic preview of education will go here --></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!-- End Standard Template UI --><!-- Modern Profile Template UI --><div id="modern-template-ui" class="template-ui hidden">
+                            <div class="lg:grid lg:grid-cols-5 lg:gap-8 items-start">
+                                <!-- Column 1: Form Inputs (Accordion) --><div class="lg:col-span-2 space-y-4">
+                                    
+                                    <!-- Accordion Item: Modern Personal Details --><div class="bg-light-card rounded-lg shadow-lg border border-light-border overflow-hidden">
+                                        <button type="button" class="accordion-header w-full flex justify-between items-center p-6 text-left" data-target="accordion-modern-personal">
+                                            <span class="text-2xl font-bold text-dark-text">Personal Details & About</span>
+                                            <svg class="accordion-arrow w-6 h-6 text-medium-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                        </button>
+                                        <div id="accordion-modern-personal" class="accordion-content p-6 pt-0 space-y-4">
+                                            <div>
+                                                <label for="modern-profile-pic" class="form-label">Profile Picture</label>
+                                                <input type="file" id="modern-profile-pic" accept="image/*" class="form-input">
+                                                <p class="mt-1 text-xs text-medium-text">Recommended: Square image for best display.</p>
+                                            </div>
+                                            <div>
+                                                <label for="modern-full-name" class="form-label">Full Name</label>
+                                                <input type="text" id="modern-full-name" class="form-input" placeholder="e.g., Ryan Adlard">
+                                            </div>
+                                            <div>
+                                                <label for="modern-job-title" class="form-label">Job Title / Tagline</label>
+                                                <input type="text" id="modern-job-title" class="form-input" placeholder="e.g., Web Designer, UX Specialist">
+                                            </div>
+                                            <div>
+                                                <label for="modern-about" class="form-label">About Me</label>
+                                                <textarea id="modern-about" rows="5" class="form-textarea" placeholder="I am Ryan Adlard, web designer from USA..."></textarea>
+                                            </div>
+                                            <div class="grid grid-cols-2 gap-4">
+                                                <div>
+                                                    <label for="modern-age" class="form-label">Age</label>
+                                                    <input type="text" id="modern-age" class="form-input" placeholder="e.g., 24">
+                                                </div>
+                                                <div>
+                                                    <label for="modern-residence" class="form-label">Residence</label>
+                                                    <input type="text" id="modern-residence" class="form-input" placeholder="e.g., USA">
+                                                </div>
+                                                <div>
+                                                    <label for="modern-address" class="form-label">Address</label>
+                                                    <input type="text" id="modern-address" class="form-input" placeholder="e.g., California, USA">
+                                                </div>
+                                                <div>
+                                                    <label for="modern-freelance" class="form-label">Freelance</label>
+                                                    <select id="modern-freelance" class="form-input">
+                                                        <option value="Available">Available</option>
+                                                        <option value="Not Available">Not Available</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="space-y-2">
+                                                <label class="form-label">Social Links</label>
+                                                <input type="text" id="modern-linkedin" class="form-input" placeholder="LinkedIn URL">
+                                                <input type="text" id="modern-github" class="form-input" placeholder="GitHub URL">
+                                                <input type="text" id="modern-website" class="form-input" placeholder="Personal Website URL">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Accordion Item: My Services --><div class="bg-light-card rounded-lg shadow-lg border border-light-border overflow-hidden">
+                                        <button type="button" class="accordion-header w-full flex justify-between items-center p-6 text-left" data-target="accordion-modern-services">
+                                            <span class="text-2xl font-bold text-dark-text">My Services</span>
+                                            <svg class="accordion-arrow w-6 h-6 text-medium-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                        </button>
+                                        <div id="accordion-modern-services" class="accordion-content p-6 pt-0 space-y-4">
+                                            <div id="modern-services-list" class="space-y-6">
+                                                <!-- Dynamic service entries will be added here --></div>
+                                            <button type="button" id="add-modern-service-btn" class="add-btn">
+                                                + Add Service
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Accordion Item: Experience (Modern Template uses the same structure but different inputs/preview) --><div class="bg-light-card rounded-lg shadow-lg border border-light-border overflow-hidden">
+                                        <button type="button" class="accordion-header w-full flex justify-between items-center p-6 text-left" data-target="accordion-modern-experience">
+                                            <span class="text-2xl font-bold text-dark-text">Experience</span>
+                                            <svg class="accordion-arrow w-6 h-6 text-medium-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                        </button>
+                                        <div id="accordion-modern-experience" class="accordion-content p-6 pt-0 space-y-4">
+                                            <div id="modern-experience-list" class="space-y-6">
+                                                <!-- Dynamic experience entries will be added here --></div>
+                                            <button type="button" id="add-modern-experience-btn" class="add-btn">
+                                                + Add Experience
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Download Button Section (Same as Standard, but for Modern Template) --><div class="bg-light-card rounded-lg shadow-lg border border-light-border overflow-hidden p-6 space-y-4">
+                                        <h3 class="text-2xl font-bold text-dark-text">Download Your CV</h3>
+                                        <p class="text-medium-text text-sm">Save your completed CV in your preferred format.</p>
+                                        <button type="button" class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-lg text-white bg-brand-primary hover:bg-brand-secondary transition-colors duration-300">
+                                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                                            Download as PDF (Mock)
+                                        </button>
+                                        <button type="button" class="w-full inline-flex items-center justify-center px-6 py-3 border border-gray-300 text-base font-medium rounded-md shadow-sm text-dark-text bg-white hover:bg-gray-50 transition-colors duration-300">
+                                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l-1.586-1.586a2 2 0 00-2.828 0L6 14m6-6l.01.01"></path></svg>
+                                            Download as Image (Mock)
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Column 2: CV Preview --><div class="lg:col-span-3 mt-8 lg:mt-0">
+                                    <div id="modern-preview" class="bg-white rounded-lg shadow-2xl text-gray-900 border border-light-border grid grid-cols-3">
+                                        <!-- Left Sidebar --><div class="col-span-1 modern-preview-sidebar">
+                                            <img id="preview-modern-profile-pic" src="https://via.placeholder.com/120x120?text=Profile" alt="Profile Picture" class="modern-profile-image">
+                                            <h2 id="preview-modern-name" class="text-2xl font-bold text-white">Ryan Adlard</h2>
+                                            <p id="preview-modern-job-title" class="text-sm font-medium text-white/90 -mt-2">Web Designer</p>
+
+                                            <div class="flex space-x-3 text-white/80 mt-2">
+                                                <a id="preview-modern-linkedin-link" href="#" target="_blank" class="hover:text-white"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+                                                <a id="preview-modern-github-link" href="#" target="_blank" class="hover:text-white"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 0C5.373 0 0 5.373 0 12c0 5.302 3.438 9.799 8.207 11.387.6.11.819-.26.819-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.043-1.61-4.043-1.61-.546-1.387-1.332-1.759-1.332-1.759-1.087-.745.083-.73.083-.73 1.205.085 1.838 1.238 1.838 1.238 1.07 1.835 2.809 1.305 3.492.998.108-.775.419-1.306.762-1.605-2.665-.3-5.464-1.332-5.464-5.93 0-1.31.465-2.382 1.235-3.22-.125-.303-.535-1.523.117-3.176 0 0 1-.32 3.297 1.23a11.55 11.55 0 013-1.42 11.55 11.55 0 013 1.42c2.297-1.55 3.297-1.23 3.297-1.23.652 1.653.242 2.873.117 3.176.77.838 1.235 1.91 1.235 3.22 0 4.61-2.8 5.625-5.474 5.923.43.37.817 1.109.817 2.236 0 1.605-.015 2.895-.015 3.284 0 .319.217.69.825.577C20.562 21.799 24 17.302 24 12c0-6.627-5.373-12-12-12z" clip-rule="evenodd"/></svg></a>
+                                                <a id="preview-modern-website-link" href="#" target="_blank" class="hover:text-white"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h2v-6h-2v6zm0-8h2V7h-2v2z"/></svg></a>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Right Content Area --><div class="col-span-2 p-8 lg:p-12 bg-white space-y-8">
+                                            <!-- About Me Section --><div>
+                                                <h3 class="modern-section-title">About Me</h3>
+                                                <p id="preview-modern-about" class="text-gray-700 text-sm leading-relaxed">
+                                                    I am Ryan Adlard, web designer from USA, California. I have rich experience in web site design and building and customization, also I am good at wordpress. I love to talk with you about our unique.
+                                                </p>
+                                                <div class="grid grid-cols-2 gap-y-2 gap-x-4 text-sm mt-4">
+                                                    <p><span class="font-semibold text-gray-700">AGE:</span> <span id="preview-modern-age">24</span></p>
+                                                    <p><span class="font-semibold text-gray-700">RESIDENCE:</span> <span id="preview-modern-residence">USA</span></p>
+                                                    <p><span class="font-semibold text-gray-700">FREELANCE:</span> <span id="preview-modern-freelance">Available</span></p>
+                                                    <p><span class="font-semibold text-gray-700">ADDRESS:</span> <span id="preview-modern-address">California, USA</span></p>
+                                                </div>
+                                            </div>
+
+                                            <!-- My Services Section --><div>
+                                                <h3 class="modern-section-title">My Services</h3>
+                                                <div id="preview-modern-services-list" class="grid grid-cols-2 gap-4 mt-4">
+                                                    <!-- Dynamic preview of services will go here --></div>
+                                            </div>
+
+                                            <!-- Experience Section --><div>
+                                                <h3 class="modern-section-title">Experience</h3>
+                                                <div id="preview-modern-experience-list" class="mt-4 space-y-4">
+                                                    <!-- Dynamic preview of experience will go here --></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!-- End Modern Profile Template UI --><!-- Minimalist Template UI --><div id="minimalist-template-ui" class="template-ui hidden">
+                            <div class="lg:grid lg:grid-cols-5 lg:gap-8 items-start">
+                                <!-- Column 1: Form Inputs (Accordion) --><div class="lg:col-span-2 space-y-4">
+                                    
+                                    <!-- Accordion Item: Personal Details --><div class="bg-light-card rounded-lg shadow-lg border border-light-border overflow-hidden">
+                                        <button type="button" class="accordion-header w-full flex justify-between items-center p-6 text-left" data-target="accordion-minimalist-personal">
+                                            <span class="text-2xl font-bold text-dark-text">Personal Details</span>
+                                            <svg class="accordion-arrow w-6 h-6 text-medium-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                        </button>
+                                        <div id="accordion-minimalist-personal" class="accordion-content p-6 pt-0 space-y-4">
+                                            <div>
+                                                <label for="minimalist-full-name" class="form-label">Full Name</label>
+                                                <input type="text" id="minimalist-full-name" class="form-input" placeholder="e.g., Alex Johnson">
+                                            </div>
+                                            <div>
+                                                <label for="minimalist-job-title" class="form-label">Job Title</label>
+                                                <input type="text" id="minimalist-job-title" class="form-input" placeholder="e.g., Product Designer">
+                                            </div>
+                                            <div>
+                                                <label for="minimalist-email" class="form-label">Email Address</label>
+                                                <input type="email" id="minimalist-email" class="form-input" placeholder="e.g., alex.johnson@example.com">
+                                            </div>
+                                            <div>
+                                                <label for="minimalist-phone" class="form-label">Phone</label>
+                                                <input type="text" id="minimalist-phone" class="form-input" placeholder="e.g., (555) 987-6543">
+                                            </div>
+                                            <div>
+                                                <label for="minimalist-website" class="form-label">Website / Portfolio</label>
+                                                <input type="text" id="minimalist-website" class="form-input" placeholder="e.g., alexjohnson.dev">
+                                            </div>
+                                            <div>
+                                                <label for="minimalist-summary" class="form-label">Professional Summary</label>
+                                                <textarea id="minimalist-summary" rows="5" class="form-textarea" placeholder="Passionate product designer with a focus on..."></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Accordion Item: Skills --><div class="bg-light-card rounded-lg shadow-lg border border-light-border overflow-hidden">
+                                        <button type="button" class="accordion-header w-full flex justify-between items-center p-6 text-left" data-target="accordion-minimalist-skills">
+                                            <span class="text-2xl font-bold text-dark-text">Skills</span>
+                                            <svg class="accordion-arrow w-6 h-6 text-medium-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                        </button>
+                                        <div id="accordion-minimalist-skills" class="accordion-content p-6 pt-0 space-y-4">
+                                            <div id="minimalist-skills-list" class="space-y-6">
+                                                <!-- Dynamic skills entries will be added here --></div>
+                                            <button type="button" id="add-minimalist-skill-btn" class="add-btn">
+                                                + Add Skill
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Accordion Item: Work Experience --><div class="bg-light-card rounded-lg shadow-lg border border-light-border overflow-hidden">
+                                        <button type="button" class="accordion-header w-full flex justify-between items-center p-6 text-left" data-target="accordion-minimalist-experience">
+                                            <span class="text-2xl font-bold text-dark-text">Work Experience</span>
+                                            <svg class="accordion-arrow w-6 h-6 text-medium-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                        </button>
+                                        <div id="accordion-minimalist-experience" class="accordion-content p-6 pt-0 space-y-4">
+                                            <div id="minimalist-experience-list" class="space-y-6">
+                                                <!-- Dynamic experience entries will be added here --></div>
+                                            <button type="button" id="add-minimalist-experience-btn" class="add-btn">
+                                                + Add Work Experience
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Accordion Item: Education --><div class="bg-light-card rounded-lg shadow-lg border border-light-border overflow-hidden">
+                                        <button type="button" class="accordion-header w-full flex justify-between items-center p-6 text-left" data-target="accordion-minimalist-education">
+                                            <span class="text-2xl font-bold text-dark-text">Education</span>
+                                            <svg class="accordion-arrow w-6 h-6 text-medium-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                        </button>
+                                        <div id="accordion-minimalist-education" class="accordion-content p-6 pt-0 space-y-4">
+                                            <div id="minimalist-education-list" class="space-y-6">
+                                                <!-- Dynamic education entries will be added here --></div>
+                                            <button type="button" id="add-minimalist-education-btn" class="add-btn">
+                                                + Add Education
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Download Button Section --><div class="bg-light-card rounded-lg shadow-lg border border-light-border overflow-hidden p-6 space-y-4">
+                                        <h3 class="text-2xl font-bold text-dark-text">Download Your CV</h3>
+                                        <p class="text-medium-text text-sm">Save your completed CV in your preferred format.</p>
+                                        <button type="button" class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-lg text-white bg-brand-primary hover:bg-brand-secondary transition-colors duration-300">
+                                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                                            Download as PDF (Mock)
+                                        </button>
+                                        <button type="button" class="w-full inline-flex items-center justify-center px-6 py-3 border border-gray-300 text-base font-medium rounded-md shadow-sm text-dark-text bg-white hover:bg-gray-50 transition-colors duration-300">
+                                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l-1.586-1.586a2 2 0 00-2.828 0L6 14m6-6l.01.01"></path></svg>
+                                            Download as Image (Mock)
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Column 2: CV Preview --><div class="lg:col-span-3 mt-8 lg:mt-0">
+                                    <div id="minimalist-preview" class="bg-white rounded-lg shadow-2xl text-gray-900 border border-light-border">
+                                        <!-- Header --><div class="minimalist-preview-header">
+                                            <h2 id="preview-minimalist-name" class="text-4xl font-bold text-gray-800">Alex Johnson</h2>
+                                            <p id="preview-minimalist-job-title" class="text-xl text-brand-primary mt-1">Product Designer</p>
+                                            <p id="preview-minimalist-contact" class="text-sm text-gray-600 mt-4">
+                                                alex.johnson@example.com &bull; (555) 987-6543 &bull; alexjohnson.dev
+                                            </p>
+                                        </div>
+                                        
+                                        <!-- Body --><div class="p-8 lg:p-12">
+                                            <p id="preview-minimalist-summary" class="text-center text-gray-700 leading-relaxed">
+                                                Passionate product designer with a focus on creating intuitive and beautiful user experiences.
+                                            </p>
+
+                                            <div class="grid grid-cols-3 gap-8 mt-10">
+                                                <!-- Left Column -->
+                                                <div class="col-span-1 space-y-8">
+                                                    <div>
+                                                        <h3 class="minimalist-section-title">Skills</h3>
+                                                        <ul id="preview-minimalist-skills-list" class="text-gray-700 space-y-2">
+                                                            <!-- Dynamic skills preview -->
+                                                        </ul>
+                                                    </div>
+                                                    <div>
+                                                        <h3 class="minimalist-section-title">Education</h3>
+                                                        <div id="preview-minimalist-education-list" class="space-y-4">
+                                                            <!-- Dynamic education preview -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Right Column -->
+                                                <div class="col-span-2">
+                                                    <div>
+                                                        <h3 class="minimalist-section-title">Experience</h3>
+                                                        <div id="preview-minimalist-experience-list" class="space-y-6">
+                                                            <!-- Dynamic experience preview -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!-- End Minimalist Template UI -->
+                    </div> <!-- End Builder Area -->
+                </div>
+            </section>
+        </section>
+
+        <!-- Page: About Us --><section id="page-about" class="page-content hidden">
+            <section class="py-20 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="lg:text-center">
+                        <h2 class="text-base text-brand-primary font-semibold tracking-wide uppercase">Our Story</h2>
+                        <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-dark-text sm:text-4xl">
+                            About {CV Builder}
+                        </p>
+                    </div>
+                    <div class="mt-16 max-w-3xl mx-auto text-lg text-medium-text space-y-6">
+                        <div>
+                            <h3 class="text-2xl font-bold text-dark-text mb-4">Our Mission</h3>
+                            <p>Our mission is simple: to democratize professional self-presentation. We believe that building a beautiful, effective CV should be an empowering experience, not a frustrating chore. We provide the tools, templates, and guidance to help you confidently showcase your skills and land your dream job.</p>
+                        </div>
+                         <div>
+                            <h3 class="text-2xl font-bold text-dark-text mb-4">Our Story</h3>
+                            <p>Founded in 2025 by our developer, Kang, {CV Builder} started as a small project to solve a personal frustration. After seeing countless talented friends struggle with clunky, outdated CV builders, Kang decided to build something better—a tool that was fast, intuitive, and produced results that were genuinely modern and impressive.</p>
+                            <p class="mt-4">Today, {CV Builder} has grown into a platform that serves users worldwide, but our core idea remains the same. We're a small, passionate team dedicated to building the best, most user-friendly career tools on the web.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Meet the Team Section -->
+                    <div class="mt-20">
+                         <h2 class="text-3xl leading-8 font-extrabold tracking-tight text-dark-text text-center">
+                            Meet the Team
+                        </h2>
+                        <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-12 max-w-2xl mx-auto">
+                            <!-- Team Member 1 -->
+                            <div class="text-center">
+                                <img class="w-40 h-40 rounded-full mx-auto shadow-lg border-4 border-white" src="https://placehold.co/150x150/e0e7ff/6366f1?text=Kang" alt="Founder Kang">
+                                <h4 class="mt-6 text-2xl font-bold text-dark-text">Kang</h4>
+                                <p class="text-base text-brand-primary font-semibold">Founder & Developer</p>
+                                <p class="mt-2 text-medium-text text-sm">Kang is the visionary and developer behind the platform, passionate about creating tools that empower users.</p>
+                            </div>
+                            <!-- Team Member 2 -->
+                            <div class="text-center">
+                                <img class="w-40 h-40 rounded-full mx-auto shadow-lg border-4 border-white" src="https://placehold.co/150x150/e5e7eb/6b7280?text=JD" alt="Lead Designer">
+                                <h4 class="mt-6 text-2xl font-bold text-dark-text">Jane Doe</h4>
+                                <p class="text-base text-brand-primary font-semibold">Lead Designer</p>
+                                <p class="mt-2 text-medium-text text-sm">Jane designs the beautiful, user-friendly templates that help our users stand out from the crowd.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Page: Legal --><section id="page-legal" class="page-content hidden">
+            <section class="py-20 bg-light-bg">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="lg:text-center">
+                        <h2 class="text-base text-brand-primary font-semibold tracking-wide uppercase">Legal</h2>
+                        <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-dark-text sm:text-4xl">
+                            Legal Information
+                        </p>
+                    </div>
+                    <div class="mt-16 max-w-3xl mx-auto text-dark-text space-y-8 bg-white p-8 md:p-12 rounded-lg shadow-lg border border-light-border">
+                        <div>
+                            <h3 class="text-2xl font-bold text-dark-text mb-4">Privacy Policy</h3>
+                            <div class="space-y-4 text-medium-text">
+                                <p>Your privacy is important to us. It is {CV Builder}'s policy to respect your privacy regarding any information we may collect from you across our website...</p>
+                                <p>We only ask for personal information when we truly need it to provide a service to you. We collect it byfair and lawful means, with your knowledge and consent. We also let you know why we’re collecting it and how it will be used.</p>
+                                <p>We only retain collected information for as long as necessary to provide you with your requested service. What data we store, we’ll protect within commercially acceptable means to prevent loss and theft, as well as unauthorized access, disclosure, copying, use or modification.</p>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-dark-text mb-4">Terms of Service</h3>
+                            <div class="space-y-4 text-medium-text">
+                                <p>By accessing the website at {CV Builder}, you are agreeing to be bound by these terms of service, all applicable laws and regulations, and agree that you are responsible for compliance with any applicable local laws.</p>
+                                <p>Permission is granted to temporarily download one copy of the materials (information or software) on {CV Builder}'s website for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+    </main>
+
+    <!-- Footer --><footer class="bg-light-card border-t border-light-border">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 overflow-hidden">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <!-- Product --><div>
+                    <h3 class="text-sm font-semibold text-medium-text tracking-wider uppercase">Product</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li><a href="#" class="text-base text-dark-text hover:text-brand-primary nav-link" data-page="features">Features</a></li>
+                        <li><a href="#" class="text-base text-dark-text hover:text-brand-primary nav-link" data-page="home">How It Works</a></li>
+                        <li><a href="#" class="text-base text-dark-text hover:text-brand-primary nav-link" data-page="builder">Create CV</a></li>
+                    </ul>
+                </div>
+                <!-- Company --><div>
+                    <h3 class="text-sm font-semibold text-medium-text tracking-wider uppercase">Company</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li><a href="#" class="text-base text-dark-text hover:text-brand-primary nav-link" data-page="about">About Us</a></li>
+                        <li><a href="#" class="text-base text-dark-text hover:text-brand-primary">Careers</a></li>
+                        <li><a href="#" class="text-base text-dark-text hover:text-brand-primary">Contact</a></li>
+                    </ul>
+                </div>
+                <!-- Legal --><div>
+                    <h3 class="text-sm font-semibold text-medium-text tracking-wider uppercase">Legal</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li><a href="#" class="text-base text-dark-text hover:text-brand-primary nav-link" data-page="legal">Privacy Policy</a></li>
+                        <li><a href="#" class="text-base text-dark-text hover:text-brand-primary nav-link" data-page="legal">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <!-- Connect --><div>
+                    <h3 class="text-sm font-semibold text-medium-text tracking-wider uppercase">Connect</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li><a href="#" class="text-base text-dark-text hover:text-brand-primary">LinkedIn</a></li>
+                        <li><a href="#" classs="text-base text-dark-text hover:text-brand-primary">Twitter / X</a></li>
+                    </ul>
+                </div>
+            </div>
+            <p class="mt-8 text-center text-base text-medium-text">
+                &copy; 2025 {CV Builder}. Idea by Kang.
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Functionality --><script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- Page Navigation ---
+            const pageLinks = document.querySelectorAll('.nav-link');
+            const pages = document.querySelectorAll('.page-content');
+            const homePage = document.getElementById('page-home');
+
+            function showPage(pageId) {
+                // Hide all pages
+                pages.forEach(page => {
+                    if (!page.classList.contains('hidden')) {
+                        page.classList.add('hidden');
+                    }
+                });
+                
+                // Show the requested page
+                const activePage = document.getElementById(`page-${pageId}`);
+                if (activePage) {
+                    activePage.classList.remove('hidden');
+                    window.scrollTo(0, 0); // Scroll to top on page change
+                } else if (homePage) {
+                    // Fallback to home if page not found
+                    homePage.classList.remove('hidden');
+                }
+            }
+
+            pageLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const pageId = link.getAttribute('data-page');
+                    if (pageId) {
+                        showPage(pageId);
+                    }
+                });
+            });
+
+            // --- CV Builder Logic ---
+            
+            // Check if builder-related elements exist before adding listeners
+            if (document.getElementById('builder')) {
+                
+                // --- Template Selector Logic ---
+                const templateLibrary = document.getElementById('template-library');
+                const builderArea = document.getElementById('builder-area');
+                const templateSelectBtns = document.querySelectorAll('.template-select-btn');
+                const changeTemplateBtn = document.getElementById('change-template-btn');
+                
+                let currentTemplate = 'standard'; // Default
+                let lastActiveTemplate = 'standard'; // Store the last used template
+
+                function showLibrary() {
+                    templateLibrary.classList.remove('hidden');
+                    builderArea.classList.add('hidden');
+                    window.scrollTo(0, 0);
+                }
+
+                function showTemplateUI(templateId) {
+                    currentTemplate = templateId;
+                    lastActiveTemplate = templateId;
+
+                    // Hide all template UIs
+                    document.querySelectorAll('.template-ui').forEach(ui => ui.classList.add('hidden'));
+                    
+                    // Show the selected one
+                    const activeUI = document.getElementById(`${templateId}-template-ui`);
+                    if (activeUI) {
+                        activeUI.classList.remove('hidden');
+                    }
+
+                    // Show builder area, hide library
+                    templateLibrary.classList.add('hidden');
+                    builderArea.classList.remove('hidden');
+                    
+                    // Open the first accordion
+                    const firstAccordion = activeUI.querySelector('.accordion-header');
+                    if (firstAccordion) {
+                        // Close all first
+                        activeUI.querySelectorAll('.accordion-header').forEach(h => toggleAccordion(h, false));
+                        // Open the first
+                        toggleAccordion(firstAccordion, true);
+                    }
+                    window.scrollTo(0, 0);
+                }
+
+                // Simplified data transfer between templates
+                function transferData(fromTemplate, toTemplate) {
+                    // This is a simplified transfer for common fields
+                    try {
+                        const commonData = {
+                            name: document.getElementById(`${fromTemplate}-full-name`).value,
+                            job: document.getElementById(`${fromTemplate}-job-title`)?.value || '', // Standard doesn't have job title
+                            summary: document.getElementById(`${fromTemplate}-summary`)?.value || document.getElementById(`${fromTemplate}-about`)?.value, // modern has 'about'
+                            email: document.getElementById(`${fromTemplate}-email`)?.value,
+                            phone: document.getElementById(`${fromTemplate}-phone`)?.value,
+                            address: document.getElementById(`${fromTemplate}-address`)?.value
+                        };
+                        
+                        document.getElementById(`${toTemplate}-full-name`).value = commonData.name;
+                        if(document.getElementById(`${toTemplate}-job-title`)) document.getElementById(`${toTemplate}-job-title`).value = commonData.job;
+                        if(document.getElementById(`${toTemplate}-summary`)) document.getElementById(`${toTemplate}-summary`).value = commonData.summary;
+                        if(document.getElementById(`${toTemplate}-about`)) document.getElementById(`${toTemplate}-about`).value = commonData.summary; // modern has 'about'
+                        if(document.getElementById(`${toTemplate}-email`)) document.getElementById(`${toTemplate}-email`).value = commonData.email;
+                        if(document.getElementById(`${toTemplate}-phone`)) document.getElementById(`${toTemplate}-phone`).value = commonData.phone;
+                        if(document.getElementById(`${toTemplate}-address`)) document.getElementById(`${toTemplate}-address`).value = commonData.address;
+
+                        // Trigger updates in the new template
+                        if (toTemplate === 'standard') updateStandardContact();
+                        if (toTemplate === 'modern') updateModernPersonalDetails();
+                        if (toTemplate === 'minimalist') updateMinimalistContact();
+
+                    } catch (e) {
+                        console.warn("Could not transfer all data:", e);
+                    }
+                }
+
+                templateSelectBtns.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const newTemplateId = btn.dataset.template;
+                        transferData(currentTemplate, newTemplateId); // Transfer data before showing
+                        showTemplateUI(newTemplateId);
+                    });
+                });
+
+                changeTemplateBtn.addEventListener('click', () => {
+                    currentTemplate = lastActiveTemplate; // Set current template to the one we just left
+                    showLibrary();
+                });
+
+                // --- Accordion Logic (Generalized for all templates) ---
+                const accordionHeaders = document.querySelectorAll('.accordion-header');
+                
+                function toggleAccordion(header, show = true) {
+                    if (!header) return;
+                    const content = document.getElementById(header.dataset.target);
+                    const arrow = header.querySelector('.accordion-arrow');
+
+                    if (content && arrow) {
+                        if (show) {
+                            content.classList.add('open');
+                            arrow.classList.add('open');
+                        } else {
+                            content.classList.remove('open');
+                            arrow.classList.remove('open');
+                        }
+                    }
+                }
+
+                accordionHeaders.forEach(header => {
+                    header.addEventListener('click', () => {
+                        const content = document.getElementById(header.dataset.target);
+                        const isOpen = content.classList.contains('open');
+
+                        // Find the parent template UI
+                        const parentUI = header.closest('.template-ui');
+                        if (!parentUI) return;
+
+                        // Close all accordions within that template
+                        parentUI.querySelectorAll('.accordion-header').forEach(h => toggleAccordion(h, false));
+
+                        // Open the clicked one if it was previously closed
+                        if (!isOpen) {
+                            toggleAccordion(header, true);
+                        }
+                    });
+                });
+                
+                // --- Standard Template Logic ---
+                const standardInputs = {
+                    fullName: document.getElementById('standard-full-name'),
+                    email: document.getElementById('standard-email'),
+                    phone: document.getElementById('standard-phone'),
+                    address: document.getElementById('standard-address'),
+                    summary: document.getElementById('standard-summary'),
+                };
+
+                const standardPreviews = {
+                    name: document.getElementById('preview-standard-name'),
+                    contact: document.getElementById('preview-standard-contact'),
+                    summary: document.getElementById('preview-standard-summary'),
+                };
+
+                const standardDynamicSections = {
+                    expList: document.getElementById('standard-experience-list'),
+                    addExpBtn: document.getElementById('add-standard-experience-btn'),
+                    previewExpList: document.getElementById('preview-standard-experience-list'),
+                    eduList: document.getElementById('standard-education-list'),
+                    addEduBtn: document.getElementById('add-standard-education-btn'),
+                    previewEduList: document.getElementById('preview-standard-education-list'),
+                };
+
+                // Event Listeners for Standard Template Inputs
+                if (standardInputs.fullName) standardInputs.fullName.addEventListener('input', updateStandardContact);
+                if (standardInputs.email) standardInputs.email.addEventListener('input', updateStandardContact);
+                if (standardInputs.phone) standardInputs.phone.addEventListener('input', updateStandardContact);
+                if (standardInputs.address) standardInputs.address.addEventListener('input', updateStandardContact);
+                if (standardInputs.summary) standardInputs.summary.addEventListener('input', (e) => {
+                    if (standardPreviews.summary) standardPreviews.summary.innerText = e.target.value || 'Dynamic and motivated professional with a proven record of...';
+                });
+
+                function updateStandardContact() {
+                    if (standardPreviews.name) standardPreviews.name.innerText = standardInputs.fullName.value || 'Jane Doe';
+                    
+                    const emailVal = standardInputs.email.value || 'jane.doe@example.com';
+                    const phoneVal = standardInputs.phone.value || '(555) 123-4567';
+                    const addressVal = standardInputs.address.value || 'San Francisco, CA';
+
+                    if (standardPreviews.contact) standardPreviews.contact.innerText = `${emailVal} | ${phoneVal} | ${addressVal}`;
+                }
+
+                // Standard Work Experience
+                if (standardDynamicSections.addExpBtn) standardDynamicSections.addExpBtn.addEventListener('click', () => {
+                    const entryDiv = document.createElement('div');
+                    entryDiv.className = 'p-4 border border-light-border rounded-lg space-y-4 relative dynamic-entry';
+                    entryDiv.innerHTML = `
+                        <button type="button" class="absolute top-2 right-2 remove-btn" title="Remove experience">✖</button>
+                        <div>
+                            <label class="form-label">Job Title</label>
+                            <input type="text" class="form-input" placeholder="e.g., Senior Web Developer">
+                        </div>
+                        <div>
+                            <label class="form-label">Company & Dates</label>
+                            <input type="text" class="form-input" placeholder="e.g., Tech Solutions Inc. | 2020 - Present">
+                        </div>
+                        <div>
+                            <label class="form-label">Description</label>
+                            <textarea rows="4" class="form-textarea" placeholder="Led development of..."></textarea>
+                        </div>
+                    `;
+                    
+                    entryDiv.querySelectorAll('input, textarea').forEach(input => {
+                        input.addEventListener('input', updateStandardExperiencePreview);
+                    });
+
+                    entryDiv.querySelector('.remove-btn').addEventListener('click', () => {
+                        entryDiv.remove();
+                        updateStandardExperiencePreview(); 
+                    });
+
+                    standardDynamicSections.expList.appendChild(entryDiv);
+                    updateStandardExperiencePreview(); 
+                });
+
+                // Standard Education
+                if (standardDynamicSections.addEduBtn) standardDynamicSections.addEduBtn.addEventListener('click', () => {
+                    const entryDiv = document.createElement('div');
+                    entryDiv.className = 'p-4 border border-light-border rounded-lg space-y-4 relative dynamic-entry';
+                    entryDiv.innerHTML = `
+                        <button type="button" class="absolute top-2 right-2 remove-btn" title="Remove education">✖</button>
+                        <div>
+                            <label class="form-label">Degree / Certificate</label>
+                            <input type="text" class="form-input" placeholder="e.g., B.S. in Computer Science">
+                        </div>
+                        <div>
+                            <label class="form-label">School & Dates</label>
+                            <input type="text" class="form-input" placeholder="e.g., State University | 2016 - 2020">
+                        </div>
+                    `;
+
+                    entryDiv.querySelectorAll('input').forEach(input => {
+                        input.addEventListener('input', updateStandardEducationPreview);
+                    });
+
+                    entryDiv.querySelector('.remove-btn').addEventListener('click', () => {
+                        entryDiv.remove();
+                        updateStandardEducationPreview();
+                    });
+
+                    standardDynamicSections.eduList.appendChild(entryDiv);
+                    updateStandardEducationPreview();
+                });
+
+                // Preview Update Functions for Standard Dynamic Sections
+                function updateStandardExperiencePreview() {
+                    if (!standardDynamicSections.previewExpList) return;
+                    standardDynamicSections.previewExpList.innerHTML = '';
+                    
+                    const entries = standardDynamicSections.expList.querySelectorAll('.dynamic-entry');
+                    
+                    if (entries.length === 0) {
+                         standardDynamicSections.previewExpList.innerHTML = '<p class="text-gray-500 italic">Add your work experience...</p>';
+                    }
+
+                    entries.forEach(entry => {
+                        const inputs = entry.querySelectorAll('input, textarea');
+                        const title = inputs[0].value || 'Job Title';
+                        const company = inputs[1].value || 'Company & Dates';
+                        const description = (inputs[2].value || '...')
+                            .split('\n')
+                            .filter(line => line.trim() !== '')
+                            .map(line => `<li>${line}</li>`)
+                            .join('');
+
+                        const previewHTML = `
+                            <div class="mt-2">
+                                <h4 class="text-lg font-semibold text-gray-800">${title}</h4>
+                                <p class="text-sm text-gray-600 italic">${company}</p>
+                                <ul class="list-disc list-inside text-gray-700 mt-1 space-y-1">
+                                    ${description}
+                                </ul>
+                            </div>
+                        `;
+                        standardDynamicSections.previewExpList.innerHTML += previewHTML;
+                    });
+                }
+
+                function updateStandardEducationPreview() {
+                    if (!standardDynamicSections.previewEduList) return;
+                    standardDynamicSections.previewEduList.innerHTML = '';
+                    const entries = standardDynamicSections.eduList.querySelectorAll('.dynamic-entry');
+
+                    if (entries.length === 0) {
+                         standardDynamicSections.previewEduList.innerHTML = '<p class="text-gray-500 italic">Add your education...</p>';
+                    }
+
+                    entries.forEach(entry => {
+                        const inputs = entry.querySelectorAll('input');
+                        const degree = inputs[0].value || 'Degree';
+                        const school = inputs[1].value || 'School & Dates';
+
+                        const previewHTML = `
+                            <div class="mt-2">
+                                <h4 class="text-lg font-semibold text-gray-800">${degree}</h4>
+                                <p class="text-sm text-gray-600 italic">${school}</p>
+                            </div>
+                        `;
+                        standardDynamicSections.previewEduList.innerHTML += previewHTML;
+                    });
+                }
+
+
+                // --- Modern Profile Template Logic ---
+                const modernInputs = {
+                    profilePic: document.getElementById('modern-profile-pic'),
+                    fullName: document.getElementById('modern-full-name'),
+                    jobTitle: document.getElementById('modern-job-title'),
+                    about: document.getElementById('modern-about'),
+                    age: document.getElementById('modern-age'),
+                    residence: document.getElementById('modern-residence'),
+                    address: document.getElementById('modern-address'),
+                    freelance: document.getElementById('modern-freelance'),
+                    linkedin: document.getElementById('modern-linkedin'),
+                    github: document.getElementById('modern-github'),
+                    website: document.getElementById('modern-website'),
+                    email: document.getElementById('modern-address'), // Using address field for this template
+                    phone: document.getElementById('modern-age'), // Using age field
+                };
+
+                const modernPreviews = {
+                    profilePic: document.getElementById('preview-modern-profile-pic'),
+                    name: document.getElementById('preview-modern-name'),
+                    jobTitle: document.getElementById('preview-modern-job-title'),
+                    about: document.getElementById('preview-modern-about'),
+                    age: document.getElementById('preview-modern-age'),
+                    residence: document.getElementById('preview-modern-residence'),
+                    address: document.getElementById('preview-modern-address'),
+                    freelance: document.getElementById('preview-modern-freelance'),
+                    linkedinLink: document.getElementById('preview-modern-linkedin-link'),
+                    githubLink: document.getElementById('preview-modern-github-link'),
+                    websiteLink: document.getElementById('preview-modern-website-link'),
+                };
+
+                const modernDynamicSections = {
+                    servicesList: document.getElementById('modern-services-list'),
+                    addServiceBtn: document.getElementById('add-modern-service-btn'),
+                    previewServicesList: document.getElementById('preview-modern-services-list'),
+                    expList: document.getElementById('modern-experience-list'),
+                    addExpBtn: document.getElementById('add-modern-experience-btn'),
+                    previewExpList: document.getElementById('preview-modern-experience-list'),
+                };
+
+                // Event Listeners for Modern Template Inputs
+                if (modernInputs.profilePic) modernInputs.profilePic.addEventListener('change', updateModernProfilePic);
+                if (modernInputs.fullName) modernInputs.fullName.addEventListener('input', updateModernPersonalDetails);
+                if (modernInputs.jobTitle) modernInputs.jobTitle.addEventListener('input', updateModernPersonalDetails);
+                if (modernInputs.about) modernInputs.about.addEventListener('input', updateModernPersonalDetails);
+                if (modernInputs.age) modernInputs.age.addEventListener('input', updateModernPersonalDetails);
+                if (modernInputs.residence) modernInputs.residence.addEventListener('input', updateModernPersonalDetails);
+                if (modernInputs.address) modernInputs.address.addEventListener('input', updateModernPersonalDetails);
+                if (modernInputs.freelance) modernInputs.freelance.addEventListener('input', updateModernPersonalDetails);
+                if (modernInputs.linkedin) modernInputs.linkedin.addEventListener('input', updateModernSocialLinks);
+                if (modernInputs.github) modernInputs.github.addEventListener('input', updateModernSocialLinks);
+                if (modernInputs.website) modernInputs.website.addEventListener('input', updateModernSocialLinks);
+
+                function updateModernProfilePic(event) {
+                    const file = event.target.files[0];
+                    if (file && modernPreviews.profilePic) {
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            modernPreviews.profilePic.src = e.target.result;
+                        };
+                        reader.readAsDataURL(file);
+                    } else if (modernPreviews.profilePic) {
+                        modernPreviews.profilePic.src = "https://via.placeholder.com/120x120?text=Profile"; // Default placeholder
+                    }
+                }
+
+                function updateModernPersonalDetails() {
+                    if (modernPreviews.name) modernPreviews.name.innerText = modernInputs.fullName.value || 'Ryan Adlard';
+                    if (modernPreviews.jobTitle) modernPreviews.jobTitle.innerText = modernInputs.jobTitle.value || 'Web Designer';
+                    if (modernPreviews.about) modernPreviews.about.innerText = modernInputs.about.value || 'I am Ryan Adlard, web designer from USA, California. I have rich experience in web site design and building and customization, also I am good at wordpress. I love to talk with you about our unique.';
+                    if (modernPreviews.age) modernPreviews.age.innerText = modernInputs.age.value || '24';
+                    if (modernPreviews.residence) modernPreviews.residence.innerText = modernInputs.residence.value || 'USA';
+                    if (modernPreviews.address) modernPreviews.address.innerText = modernInputs.address.value || 'California, USA';
+                    if (modernPreviews.freelance) modernPreviews.freelance.innerText = modernInputs.freelance.value || 'Available';
+                }
+
+                function updateModernSocialLinks() {
+                    if (modernPreviews.linkedinLink) {
+                        modernPreviews.linkedinLink.href = modernInputs.linkedin.value || '#';
+                        modernPreviews.linkedinLink.style.display = modernInputs.linkedin.value ? '' : 'none';
+                    }
+                    if (modernPreviews.githubLink) {
+                        modernPreviews.githubLink.href = modernInputs.github.value || '#';
+                        modernPreviews.githubLink.style.display = modernInputs.github.value ? '' : 'none';
+                    }
+                    if (modernPreviews.websiteLink) {
+                        modernPreviews.websiteLink.href = modernInputs.website.value || '#';
+                        modernPreviews.websiteLink.style.display = modernInputs.website.value ? '' : 'none';
+                    }
+                }
+
+                // Modern Services
+                if (modernDynamicSections.addServiceBtn) modernDynamicSections.addServiceBtn.addEventListener('click', () => {
+                    const entryDiv = document.createElement('div');
+                    entryDiv.className = 'p-4 border border-light-border rounded-lg space-y-4 relative dynamic-entry';
+                    entryDiv.innerHTML = `
+                        <button type="button" class="absolute top-2 right-2 remove-btn" title="Remove service">✖</button>
+                        <div>
+                            <label class="form-label">Service Title</label>
+                            <input type="text" class="form-input" placeholder="e.g., Web Development">
+                        </div>
+                        <div>
+                            <label class="form-label">Service Description</label>
+                            <textarea rows="3" class="form-textarea" placeholder="Modern and mobile-ready websites..."></textarea>
+                        </div>
+                    `;
+                    
+                    entryDiv.querySelectorAll('input, textarea').forEach(input => {
+                        input.addEventListener('input', updateModernServicesPreview);
+                    });
+
+                    entryDiv.querySelector('.remove-btn').addEventListener('click', () => {
+                        entryDiv.remove();
+                        updateModernServicesPreview(); 
+                    });
+
+                    modernDynamicSections.servicesList.appendChild(entryDiv);
+                    updateModernServicesPreview(); 
+                });
+
+                 // Modern Experience
+                 if (modernDynamicSections.addExpBtn) modernDynamicSections.addExpBtn.addEventListener('click', () => {
+                    const entryDiv = document.createElement('div');
+                    entryDiv.className = 'p-4 border border-light-border rounded-lg space-y-4 relative dynamic-entry';
+                    entryDiv.innerHTML = `
+                        <button type="button" class="absolute top-2 right-2 remove-btn" title="Remove experience">✖</button>
+                        <div>
+                            <label class="form-label">Job Title</label>
+                            <input type="text" class="form-input" placeholder="e.g., Senior Web Developer">
+                        </div>
+                        <div>
+                            <label class="form-label">Company</label>
+                            <input type="text" class="form-input" placeholder="e.g., Tech Solutions Inc.">
+                        </div>
+                        <div>
+                            <label class="form-label">Dates</label>
+                            <input type="text" class="form-input" placeholder="e.g., 2020 - Present">
+                        </div>
+                        <div>
+                            <label class="form-label">Description</label>
+                            <textarea rows="4" class="form-textarea" placeholder="Led development of..."></textarea>
+                        </div>
+                    `;
+                    
+                    entryDiv.querySelectorAll('input, textarea').forEach(input => {
+                        input.addEventListener('input', updateModernExperiencePreview);
+                    });
+
+                    entryDiv.querySelector('.remove-btn').addEventListener('click', () => {
+                        entryDiv.remove();
+                        updateModernExperiencePreview(); 
+                    });
+
+                    modernDynamicSections.expList.appendChild(entryDiv);
+                    updateModernExperiencePreview(); 
+                });
+
+                // Preview Update Functions for Modern Dynamic Sections
+                function updateModernServicesPreview() {
+                    if (!modernDynamicSections.previewServicesList) return;
+                    modernDynamicSections.previewServicesList.innerHTML = '';
+                    
+                    const entries = modernDynamicSections.servicesList.querySelectorAll('.dynamic-entry');
+                    
+                    if (entries.length === 0) {
+                         modernDynamicSections.previewServicesList.innerHTML = '<p class="text-gray-500 italic text-sm text-center col-span-2">Add your services...</p>';
+                    }
+
+                    entries.forEach(entry => {
+                        const inputs = entry.querySelectorAll('input, textarea');
+                        const title = inputs[0].value || 'Service Title';
+                        const description = inputs[1].value || 'Brief description of service.';
+
+                        const previewHTML = `
+                            <div class="bg-light-bg p-4 rounded-md border border-light-border flex items-start space-x-3">
+                                <svg class="w-6 h-6 text-brand-primary flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">${title}</h4>
+                                    <p class="text-xs text-gray-600">${description}</p>
+                                </div>
+                            </div>
+                        `;
+                        modernDynamicSections.previewServicesList.innerHTML += previewHTML;
+                    });
+                }
+
+                function updateModernExperiencePreview() {
+                    if (!modernDynamicSections.previewExpList) return;
+                    modernDynamicSections.previewExpList.innerHTML = '';
+                    
+                    const entries = modernDynamicSections.expList.querySelectorAll('.dynamic-entry');
+                    
+                    if (entries.length === 0) {
+                         modernDynamicSections.previewExpList.innerHTML = '<p class="text-gray-500 italic">Add your work experience...</p>';
+                    }
+
+                    entries.forEach(entry => {
+                        const inputs = entry.querySelectorAll('input, textarea');
+                        const title = inputs[0].value || 'Job Title';
+                        const company = inputs[1].value || 'Company';
+                        const dates = inputs[2].value || 'Start - End Dates';
+                        const description = (inputs[3].value || '...')
+                            .split('\n')
+                            .filter(line => line.trim() !== '')
+                            .map(line => `<li>${line}</li>`)
+                            .join('');
+
+                        const previewHTML = `
+                            <div class="relative pl-8">
+                                <span class="absolute left-0 top-1.5 h-3 w-3 rounded-full bg-brand-primary"></span>
+                                <span class="absolute left-[5px] top-6 bottom-0 w-px bg-gray-300"></span>
+                                <h4 class="text-lg font-semibold text-gray-800">${title}</h4>
+                                <p class="text-sm text-gray-600 italic">${company} | ${dates}</p>
+                                <ul class="list-disc list-inside text-gray-700 text-sm mt-1 space-y-1 ml-4">
+                                    ${description}
+                                </ul>
+                            </div>
+                        `;
+                        modernDynamicSections.previewExpList.innerHTML += previewHTML;
+                    });
+                }
+
+                // --- Minimalist Template Logic ---
+                const minimalistInputs = {
+                    fullName: document.getElementById('minimalist-full-name'),
+                    jobTitle: document.getElementById('minimalist-job-title'),
+                    email: document.getElementById('minimalist-email'),
+                    phone: document.getElementById('minimalist-phone'),
+                    website: document.getElementById('minimalist-website'),
+                    summary: document.getElementById('minimalist-summary'),
+                    address: document.getElementById('minimalist-email'), // No dedicated address field, will reuse
+                };
+
+                const minimalistPreviews = {
+                    name: document.getElementById('preview-minimalist-name'),
+                    jobTitle: document.getElementById('preview-minimalist-job-title'),
+                    contact: document.getElementById('preview-minimalist-contact'),
+                    summary: document.getElementById('preview-minimalist-summary'),
+                };
+
+                const minimalistDynamicSections = {
+                    skillsList: document.getElementById('minimalist-skills-list'),
+                    addSkillBtn: document.getElementById('add-minimalist-skill-btn'),
+                    previewSkillsList: document.getElementById('preview-minimalist-skills-list'),
+                    expList: document.getElementById('minimalist-experience-list'),
+                    addExpBtn: document.getElementById('add-minimalist-experience-btn'),
+                    previewExpList: document.getElementById('preview-minimalist-experience-list'),
+                    eduList: document.getElementById('minimalist-education-list'),
+                    addEduBtn: document.getElementById('add-minimalist-education-btn'),
+                    previewEduList: document.getElementById('preview-minimalist-education-list'),
+                };
+
+                // Event Listeners for Minimalist Template Inputs
+                if (minimalistInputs.fullName) minimalistInputs.fullName.addEventListener('input', updateMinimalistContact);
+                if (minimalistInputs.jobTitle) minimalistInputs.jobTitle.addEventListener('input', updateMinimalistContact);
+                if (minimalistInputs.email) minimalistInputs.email.addEventListener('input', updateMinimalistContact);
+                if (minimalistInputs.phone) minimalistInputs.phone.addEventListener('input', updateMinimalistContact);
+                if (minimalistInputs.website) minimalistInputs.website.addEventListener('input', updateMinimalistContact);
+                if (minimalistInputs.summary) minimalistInputs.summary.addEventListener('input', (e) => {
+                    if (minimalistPreviews.summary) minimalistPreviews.summary.innerText = e.target.value || 'Passionate product designer with a focus on creating intuitive...';
+                });
+
+                function updateMinimalistContact() {
+                    if (minimalistPreviews.name) minimalistPreviews.name.innerText = minimalistInputs.fullName.value || 'Alex Johnson';
+                    if (minimalistPreviews.jobTitle) minimalistPreviews.jobTitle.innerText = minimalistInputs.jobTitle.value || 'Product Designer';
+                    
+                    const emailVal = minimalistInputs.email.value || 'alex.johnson@example.com';
+                    const phoneVal = minimalistInputs.phone.value || '(555) 987-6543';
+                    const websiteVal = minimalistInputs.website.value || 'alexjohnson.dev';
+
+                    if (minimalistPreviews.contact) minimalistPreviews.contact.innerText = `${emailVal} • ${phoneVal} • ${websiteVal}`;
+                }
+
+                // Minimalist Skills
+                if (minimalistDynamicSections.addSkillBtn) minimalistDynamicSections.addSkillBtn.addEventListener('click', () => {
+                    const entryDiv = document.createElement('div');
+                    entryDiv.className = 'p-4 border border-light-border rounded-lg space-y-4 relative dynamic-entry';
+                    entryDiv.innerHTML = `
+                        <button type="button" class="absolute top-2 right-2 remove-btn" title="Remove skill">✖</button>
+                        <div>
+                            <label class="form-label">Skill (e.g., JavaScript)</label>
+                            <input type="text" class="form-input" placeholder="e.g., JavaScript">
+                        </div>
+                    `;
+                    
+                    entryDiv.querySelector('input').addEventListener('input', updateMinimalistSkillsPreview);
+                    entryDiv.querySelector('.remove-btn').addEventListener('click', () => {
+                        entryDiv.remove();
+                        updateMinimalistSkillsPreview(); 
+                    });
+
+                    minimalistDynamicSections.skillsList.appendChild(entryDiv);
+                    updateMinimalistSkillsPreview(); 
+                });
+
+                // Minimalist Work Experience
+                if (minimalistDynamicSections.addExpBtn) minimalistDynamicSections.addExpBtn.addEventListener('click', () => {
+                    const entryDiv = document.createElement('div');
+                    entryDiv.className = 'p-4 border border-light-border rounded-lg space-y-4 relative dynamic-entry';
+                    entryDiv.innerHTML = `
+                        <button type="button" class="absolute top-2 right-2 remove-btn" title="Remove experience">✖</button>
+                        <div>
+                            <label class="form-label">Job Title</label>
+                            <input type="text" class="form-input" placeholder="e.g., Product Designer">
+                        </div>
+                        <div>
+                            <label class="form-label">Company & Dates</label>
+                            <input type="text" class="form-input" placeholder="e.g., Pixa Co. | 2021 - Present">
+                        </div>
+                        <div>
+                            <label class="form-label">Description</label>
+                            <textarea rows="4" class="form-textarea" placeholder="Led design on..."></textarea>
+                        </div>
+                    `;
+                    
+                    entryDiv.querySelectorAll('input, textarea').forEach(input => {
+                        input.addEventListener('input', updateMinimalistExperiencePreview);
+                    });
+
+                    entryDiv.querySelector('.remove-btn').addEventListener('click', () => {
+                        entryDiv.remove();
+                        updateMinimalistExperiencePreview(); 
+                    });
+
+                    minimalistDynamicSections.expList.appendChild(entryDiv);
+                    updateMinimalistExperiencePreview(); 
+                });
+
+                // Minimalist Education
+                if (minimalistDynamicSections.addEduBtn) minimalistDynamicSections.addEduBtn.addEventListener('click', () => {
+                    const entryDiv = document.createElement('div');
+                    entryDiv.className = 'p-4 border border-light-border rounded-lg space-y-4 relative dynamic-entry';
+                    entryDiv.innerHTML = `
+                        <button type="button" class="absolute top-2 right-2 remove-btn" title="Remove education">✖</button>
+                        <div>
+                            <label class="form-label">Degree / Certificate</label>
+                            <input type="text" class="form-input" placeholder="e.g., B.A. in Design">
+                        </div>
+                        <div>
+                            <label class="form-label">School & Year</label>
+                            <input type="text" class="form-input" placeholder="e.g., Design University | 2020">
+                        </div>
+                    `;
+
+                    entryDiv.querySelectorAll('input').forEach(input => {
+                        input.addEventListener('input', updateMinimalistEducationPreview);
+                    });
+
+                    entryDiv.querySelector('.remove-btn').addEventListener('click', () => {
+                        entryDiv.remove();
+                        updateMinimalistEducationPreview();
+                    });
+
+                    minimalistDynamicSections.eduList.appendChild(entryDiv);
+                    updateMinimalistEducationPreview();
+                });
+
+                // Preview Update Functions for Minimalist Dynamic Sections
+                function updateMinimalistSkillsPreview() {
+                    if (!minimalistDynamicSections.previewSkillsList) return;
+                    minimalistDynamicSections.previewSkillsList.innerHTML = '';
+                    
+                    const entries = minimalistDynamicSections.skillsList.querySelectorAll('.dynamic-entry');
+                    
+                    if (entries.length === 0) {
+                         minimalistDynamicSections.previewSkillsList.innerHTML = '<li class="text-gray-500 italic">Add your skills...</li>';
+                    }
+
+                    entries.forEach(entry => {
+                        const skill = entry.querySelector('input').value || 'Skill';
+                        const previewHTML = `<li class="text-sm font-medium"> • ${skill}</li>`;
+                        minimalistDynamicSections.previewSkillsList.innerHTML += previewHTML;
+                    });
+                }
+
+                function updateMinimalistExperiencePreview() {
+                    if (!minimalistDynamicSections.previewExpList) return;
+                    minimalistDynamicSections.previewExpList.innerHTML = '';
+                    
+                    const entries = minimalistDynamicSections.expList.querySelectorAll('.dynamic-entry');
+                    
+                    if (entries.length === 0) {
+                         minimalistDynamicSections.previewExpList.innerHTML = '<p class="text-gray-500 italic">Add your work experience...</p>';
+                    }
+
+                    entries.forEach(entry => {
+                        const inputs = entry.querySelectorAll('input, textarea');
+                        const title = inputs[0].value || 'Job Title';
+                        const company = inputs[1].value || 'Company & Dates';
+                        const description = (inputs[2].value || '...')
+                            .split('\n')
+                            .filter(line => line.trim() !== '')
+                            .map(line => `<li class="text-sm">${line}</li>`)
+                            .join('');
+
+                        const previewHTML = `
+                            <div>
+                                <h4 class="text-lg font-semibold text-gray-800">${title}</h4>
+                                <p class="text-sm text-brand-primary font-medium italic -mt-1">${company}</p>
+                                <ul class="list-disc list-outside text-gray-700 mt-2 space-y-1 pl-5">
+                                    ${description}
+                                </ul>
+                            </div>
+                        `;
+                        minimalistDynamicSections.previewExpList.innerHTML += previewHTML;
+                    });
+                }
+                
+                function updateMinimalistEducationPreview() {
+                    if (!minimalistDynamicSections.previewEduList) return;
+                    minimalistDynamicSections.previewEduList.innerHTML = '';
+                    const entries = minimalistDynamicSections.eduList.querySelectorAll('.dynamic-entry');
+
+                    if (entries.length === 0) {
+                         minimalistDynamicSections.previewEduList.innerHTML = '<p class="text-gray-500 italic text-sm">Add your education...</p>';
+                    }
+
+                    entries.forEach(entry => {
+                        const inputs = entry.querySelectorAll('input');
+                        const degree = inputs[0].value || 'Degree';
+                        const school = inputs[1].value || 'School & Year';
+
+                        const previewHTML = `
+                            <div>
+                                <h4 class="text-md font-semibold text-gray-800">${degree}</h4>
+                                <p class="text-sm text-gray-600 italic -mt-1">${school}</p>
+                            </div>
+                        `;
+                        minimalistDynamicSections.previewEduList.innerHTML += previewHTML;
+                    });
+                }
+
+                // --- Initial Setup Calls for ALL templates ---
+                function initializeTemplates() {
+                    // Standard Template Init
+                    updateStandardContact();
+                    if (standardDynamicSections.expList && standardDynamicSections.expList.children.length === 0) {
+                        standardDynamicSections.addExpBtn.click(); // Add a default experience
+                    } else {
+                        updateStandardExperiencePreview();
+                    }
+                    if (standardDynamicSections.eduList && standardDynamicSections.eduList.children.length === 0) {
+                        standardDynamicSections.addEduBtn.click(); // Add a default education
+                    } else {
+                        updateStandardEducationPreview();
+                    }
+
+                    // Modern Template Init
+                    updateModernPersonalDetails();
+                    updateModernSocialLinks();
+                    if (modernDynamicSections.servicesList && modernDynamicSections.servicesList.children.length === 0) {
+                        // Add default services for modern template
+                        const defaultServices = [
+                            { title: 'Web Development', desc: 'Modern and mobile-ready websites that will help you reach all of your marketing.' },
+                            { title: 'Music Writing', desc: 'Music copying, transcription, arranging and composition services.' }
+                        ];
+                        defaultServices.forEach(service => {
+                            const entryDiv = document.createElement('div');
+                            entryDiv.className = 'p-4 border border-light-border rounded-lg space-y-4 relative dynamic-entry';
+                            entryDiv.innerHTML = `
+                                <button type="button" class="absolute top-2 right-2 remove-btn" title="Remove service">✖</button>
+                                <div><label class="form-label">Service Title</label><input type="text" class="form-input" placeholder="e.g., Web Development" value="${service.title}"></div>
+                                <div><label class="form-label">Service Description</label><textarea rows="3" class="form-textarea" placeholder="Modern and mobile-ready websites...">${service.desc}</textarea></div>
+                            `;
+                            entryDiv.querySelectorAll('input, textarea').forEach(input => input.addEventListener('input', updateModernServicesPreview));
+                            entryDiv.querySelector('.remove-btn').addEventListener('click', () => { entryDiv.remove(); updateModernServicesPreview(); });
+                            modernDynamicSections.servicesList.appendChild(entryDiv);
+                        });
+                        updateModernServicesPreview();
+                    } else {
+                        updateModernServicesPreview();
+                    }
+                    if (modernDynamicSections.expList && modernDynamicSections.expList.children.length === 0) {
+                        modernDynamicSections.addExpBtn.click(); // Add a default experience
+                    } else {
+                        updateModernExperiencePreview();
+                    }
+
+                    // Minimalist Template Init
+                    updateMinimalistContact();
+                    if (minimalistDynamicSections.skillsList && minimalistDynamicSections.skillsList.children.length === 0) {
+                        ['Figma', 'JavaScript', 'User Research'].forEach(skill => {
+                            const entryDiv = document.createElement('div');
+                            entryDiv.className = 'p-4 border border-light-border rounded-lg space-y-4 relative dynamic-entry';
+                            entryDiv.innerHTML = `
+                                <button type="button" class="absolute top-2 right-2 remove-btn" title="Remove skill">✖</button>
+                                <div><label class="form-label">Skill</label><input type="text" class="form-input" value="${skill}"></div>
+                            `;
+                            entryDiv.querySelector('input').addEventListener('input', updateMinimalistSkillsPreview);
+                            entryDiv.querySelector('.remove-btn').addEventListener('click', () => { entryDiv.remove(); updateMinimalistSkillsPreview(); });
+                            minimalistDynamicSections.skillsList.appendChild(entryDiv);
+                        });
+                        updateMinimalistSkillsPreview();
+                    } else {
+                        updateMinimalistSkillsPreview();
+                    }
+                     if (minimalistDynamicSections.expList && minimalistDynamicSections.expList.children.length === 0) {
+                        minimalistDynamicSections.addExpBtn.click(); 
+                    } else {
+                        updateMinimalistExperiencePreview();
+                    }
+                    if (minimalistDynamicSections.eduList && minimalistDynamicSections.eduList.children.length === 0) {
+                        minimalistDynamicSections.addEduBtn.click();
+                    } else {
+                        updateMinimalistEducationPreview();
+                    }
+                }
+                
+                initializeTemplates();
+
+            } // End of builder-specific logic
+        });
+    </script>
+
+</body>
+</html>
